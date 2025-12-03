@@ -1,5 +1,6 @@
 ---
-import Link from "./Link.astro";
+import { lintWhatsApp } from "@/lib/utils";
+import Logo from "./Logo.astro";
 ---
 
 <footer class="border-t border-border bg-background">
@@ -7,16 +8,10 @@ import Link from "./Link.astro";
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div class="lg:col-span-1">
         <div class="flex items-center gap-2">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary"
-          >
-            <img
-              src="https://github.com/higormatheus.png"
-              alt="Higor Matheus"
-              class="rounded-lg h-10 w-10"
-            />
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg">
+            <Logo class="h-10 w-10" />
           </div>
-          <span class="text-xl font-bold text-foreground">Higor Matheus</span>
+          <span class="text-xl font-bold text-foreground">Sistemas</span>
         </div>
         <p class="mt-4 text-sm text-muted-foreground">
           Especialistas em desenvolvimento React, criando aplicações web
@@ -88,7 +83,7 @@ import Link from "./Link.astro";
         <ul class="mt-6 space-y-4">
           <li>
             <a
-              href="https://w.app/fzht6l"
+              href={lintWhatsApp}
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm text-muted-foreground hover:text-foreground transition-colors"
