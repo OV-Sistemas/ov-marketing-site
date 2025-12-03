@@ -1,0 +1,48 @@
+---
+import Button from "./Button.astro";
+import { lintWhatsApp } from "@/lib/utils";
+---
+
+<section class="py-20 lg:py-32 bg-muted/30">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        Pronto para começar seu projeto React?
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-muted-foreground">
+        Entre em contato conosco e descubra como podemos transformar sua ideia
+        em uma aplicação React de sucesso.
+      </p>
+      <div
+        class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+      >
+        <Button size="lg" class="text-base px-8" data-whatsapp-button2>
+          Solicitar Orçamento
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="ml-2 h-5 w-5"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ lintWhatsApp }}>
+  document
+    .querySelector("[data-whatsapp-button2]")
+    ?.addEventListener("click", () => {
+      window.location.href = lintWhatsApp;
+    });
+</script>

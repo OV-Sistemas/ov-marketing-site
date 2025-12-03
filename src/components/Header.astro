@@ -1,0 +1,148 @@
+---
+import Link from "./Link.astro";
+import Logo from "./Logo.astro";
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl"
+>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8"
+  >
+    <div class="flex lg:flex-1">
+      <a href="#" class="-m-1.5 p-1.5 flex items-center gap-0.5 no-underline">
+        <Logo class="h-10 w-10" />
+        <span class="text-xl font-bold text-foreground"> Sistemas </span>
+      </a>
+    </div>
+
+    <div class="hidden lg:flex lg:gap-x-8">
+      <Link href="#servicos"> Serviços </Link>
+      <Link href="#tecnologias"> Tecnologias </Link>
+      <Link href="#projetos"> Projetos </Link>
+      <Link href="#sobre"> Sobre </Link>
+    </div>
+
+    <div class="flex flex-1 items-center justify-end gap-x-4"></div>
+
+    <div class="flex lg:hidden">
+      <button
+        type="button"
+        id="mobile-menu-button"
+        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <svg
+          id="menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6"
+          aria-hidden="true"
+        >
+          <path d="M4 12h16"></path>
+          <path d="M4 18h16"></path>
+          <path d="M4 6h16"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6 hidden"
+          aria-hidden="true"
+        >
+          <path d="M18 6L6 18"></path>
+          <path d="M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="lg:hidden border-t border-border/40 bg-background/95 backdrop-blur-xl hidden"
+  >
+    <div class="space-y-1 px-6 pb-6 pt-4">
+      <Link href="#servicos" class="block p-2 mobile-menu-link">
+        Serviços
+      </Link>
+      <Link href="#tecnologias" class="block p-2 mobile-menu-link">
+        Tecnologias
+      </Link>
+      <Link href="#projetos" class="block p-2 mobile-menu-link">
+        Projetos
+      </Link>
+      <Link href="#sobre" class="block p-2 mobile-menu-link"> Sobre </Link>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+  const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+
+  if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isOpen = !mobileMenu.classList.contains("hidden");
+
+      if (isOpen) {
+        // Fechar menu
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        mobileMenuButton.setAttribute("aria-label", "Abrir menu");
+      } else {
+        // Abrir menu
+        mobileMenu.classList.remove("hidden");
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "true");
+        mobileMenuButton.setAttribute("aria-label", "Fechar menu");
+      }
+    });
+
+    // Fechar menu quando um link for clicado
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        mobileMenuButton.setAttribute("aria-label", "Abrir menu");
+      });
+    });
+
+    // Fechar menu ao clicar fora dele
+    document.addEventListener("click", (e) => {
+      if (
+        !mobileMenuButton.contains(e.target as Node) &&
+        !mobileMenu.contains(e.target as Node) &&
+        !mobileMenu.classList.contains("hidden")
+      ) {
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        mobileMenuButton.setAttribute("aria-label", "Abrir menu");
+      }
+    });
+  }
+</script>
